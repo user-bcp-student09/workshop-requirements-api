@@ -18,6 +18,12 @@ uvicorn app.main:app --host 127.0.0.1 --port 8000 --reload
 
 Swagger: `http://localhost:8000/docs`
 
+La API valida el JWT HS256 emitido por el backend de autenticación. Configura
+el mismo valor de `AUTH_JWT_SECRET` en ambos servicios; la API no arranca si
+falta o tiene menos de 32 bytes.
+Las solicitudes sin un token válido reciben HTTP `401` con
+`{"detail":"ocurrio un error"}`.
+
 ## Endpoints
 
 - `GET /api/tasks`
